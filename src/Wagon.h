@@ -11,7 +11,13 @@ public:
 float wheel_powers[2];
 
 public:
-Wagon(v3f pos) : Orientable(pos) {};
+Wagon(v3f pos) : Orientable(pos) {
+  pitch(-M_PI/2);
+
+  wheel_powers[0] = 0.1;
+  wheel_powers[1] = 0.01;
+};
+
 void update() {
   // translational position
   pos += fd * (wheel_powers[0] + wheel_powers[1]);

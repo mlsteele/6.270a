@@ -5,6 +5,7 @@ Orientable::Orientable() {
 }
 
 Orientable::Orientable(V3D<float> _pos) {
+  zero();
   pos.set(_pos);
 }
 
