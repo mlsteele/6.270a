@@ -13,7 +13,7 @@ int RSim::init() {
     0); // minor
   window = new sf::Window(desktop_mode, "SFML Window", sf::Style::Fullscreen, OGLContext);
 
-  wagons.push_back(new Orientable(v3f(0,0,0)));
+  wagons.push_back(new Wagon(v3f(0,0,0)));
 
   loop();
 

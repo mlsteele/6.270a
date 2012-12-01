@@ -9,7 +9,7 @@ using std::vector;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-#include "Orientable.h"
+#include "Wagon.h"
 #include "Oggler.h"
 
 
@@ -23,7 +23,7 @@ int running;
 sf::Window* window;
 Oggler cam;
 
-std::vector<Orientable*> wagons;
+std::vector< Wagon* > wagons;
 
 public:
 
