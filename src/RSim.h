@@ -10,6 +10,8 @@ using std::vector;
 #include <SFML/Window.hpp>
 
 #include "Wagon.h"
+#include "Soul.h"
+#include "PathQueueSoul.h"
 #include "Oggler.h"
 
 
@@ -23,7 +25,8 @@ int running;
 sf::Window* window;
 Oggler cam;
 
-std::vector< Wagon* > wagons;
+std::vector< Soul* > souls;
+std::vector< Orientable* > targets;
 
 public:
 

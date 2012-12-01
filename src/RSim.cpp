@@ -13,7 +13,20 @@ int RSim::init() {
     0); // minor
   window = new sf::Window(desktop_mode, "SFML Window", sf::Style::Fullscreen, OGLContext);
 
-  wagons.push_back(new Wagon(v3f(0,0,0)));
+  Wagon* wagon = new Wagon(v3f(0,0,0));
+  auto pqs = new PathQueueSoul(wagon);
+  souls.push_back(pqs);
+
+
+  targets.push_back(new Orientable(v3f(10, -30, 0)));
+  targets.push_back(new Orientable(v3f(0, 50, 0)));
+  targets.push_back(new Orientable(v3f(40, 3, 0)));
+  targets.push_back(new Orientable(v3f(50, 2, 0)));
+  targets.push_back(new Orientable(v3f(-30, 20, 0)));
+
+  for ( auto tg : targets ) {
+    pqs->add_target(tg->pos);
+  }
 
   loop();
 

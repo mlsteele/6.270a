@@ -13,9 +13,10 @@ float wheel_powers[2];
 public:
 Wagon(v3f pos) : Orientable(pos) {
   pitch(-M_PI/2);
+  yaw(M_PI);
 
-  wheel_powers[0] = 0.1;
-  wheel_powers[1] = 0.01;
+  wheel_powers[0] = 0;
+  wheel_powers[1] = 0;
 };
 
 void update() {
@@ -23,7 +24,7 @@ void update() {
   pos += fd * (wheel_powers[0] + wheel_powers[1]);
 
   // rotational position
-  yaw((wheel_powers[0] + wheel_powers[1]) / 2);
+  yaw((wheel_powers[0] - wheel_powers[1]) / 2);
 };
 
 };

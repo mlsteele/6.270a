@@ -48,7 +48,7 @@ void RSim::render_setup() {
 
   // point camera
   cam.settings(90, window->getSize().x / (float) window->getSize().y, .1, 500);
-  cam.dolly->pos.z = 50;
+  cam.dolly->pos.z = 64;
   // cam.dolly->pitch(-M_PI/2.);
 }
 
