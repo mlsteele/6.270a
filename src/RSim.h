@@ -9,6 +9,7 @@ using std::vector;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
+#include "Orientable.h"
 #include "Oggler.h"
 
 
@@ -16,9 +17,13 @@ class RSim {
 
 private:
 
+typedef V3D<float> v3f;
+
 int running;
 sf::Window* window;
 Oggler cam;
+
+std::vector<Orientable*> wagons;
 
 public:
 
@@ -26,6 +31,7 @@ RSim();
 int init();
 void loop();
 void event_handle();
+void physics_step();
 void render_setup();
 void render_pre();
 void render();

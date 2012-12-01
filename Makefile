@@ -1,10 +1,9 @@
-CC=g++
-# -std=c++11 
-CFLAGS=-Wall
+CC=/opt/local/bin/g++
+CFLAGS=-std=c++11 -Wall
 CREQS=-lsfml-system -lsfml-window -framework GLUT -framework OpenGL
 SRCROOT=src
 BUILDROOT=build
-TARGET=$(BUILDROOT)/RSim
+TARGET=$(BUILDROOT)/rsim
 
 all: RSim r
 

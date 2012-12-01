@@ -13,7 +13,7 @@ int RSim::init() {
     0); // minor
   window = new sf::Window(desktop_mode, "SFML Window", sf::Style::Fullscreen, OGLContext);
 
-  // circles.push_back(new Orientable(v3f(0,0,0)));
+  wagons.push_back(new Orientable(v3f(0,0,0)));
 
   loop();
 
@@ -25,7 +25,7 @@ void RSim::loop() {
 
   while(running) {
     event_handle();
-    // step_physics();
+    physics_step();
     render();
   }
 }

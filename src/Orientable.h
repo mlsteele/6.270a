@@ -22,6 +22,7 @@ class Orientable {
   
   public:
     Orientable();
+    Orientable(V3D<float> _pos);
     
     // Translation
     

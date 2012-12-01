@@ -1,11 +1,5 @@
 #include "rsim.h"
 
-void RSim::render() {
-  render_pre();
-
-  window->display();
-}
-
 void RSim::render_setup() {
   // Color & Depth Clear Values
   glClearDepth(1.f);
@@ -50,6 +44,12 @@ void RSim::render_setup() {
   //   light3pos[0] = -140; light3pos[1] = -110; light3pos[2] = 70; light3pos[3] = 1;
   //   light3dif[0] = .2; light3dif[1] = .2; light3dif[2] = .2;  light3dif[3] = 1;
   //   glLightfv(GL_LIGHT3, GL_DIFFUSE, light3dif);
+
+
+  // point camera
+  cam.settings(90, window->getSize().x / (float) window->getSize().y, .1, 500);
+  cam.dolly->pos.z = 50;
+  // cam.dolly->pitch(-M_PI/2.);
 }
 
 void RSim::render_pre() {

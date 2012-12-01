@@ -1,10 +1,13 @@
 #include "Orientable.h"
 
-// constructor
-// set to origin
 Orientable::Orientable() {
   zero();
 }
+
+Orientable::Orientable(V3D<float> _pos) {
+  pos.set(_pos);
+}
+
 
 // zero
 // zeros the camera in global space
