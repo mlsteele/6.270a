@@ -23,6 +23,7 @@ typedef V3D<float> v3f;
 
 int running;
 sf::Window* window;
+sf::Clock clk;
 Oggler cam;
 
 std::vector< Soul* > souls;

@@ -17,7 +17,6 @@ int RSim::init() {
   auto pqs = new PathQueueSoul(wagon);
   souls.push_back(pqs);
 
-
   targets.push_back(new Orientable(v3f(10, -30, 0)));
   targets.push_back(new Orientable(v3f(0, 50, 0)));
   targets.push_back(new Orientable(v3f(40, 3, 0)));
@@ -36,10 +35,25 @@ int RSim::init() {
 void RSim::loop() {
   render_setup();
 
+  auto time_from = [] (sf::Clock& clk) {return clk.getElapsedTime().asMilliseconds();};
+
+  clk.restart();
+  sf::Clock phys_log_clk;
+  sf::Clock render_clk;
+
   while(running) {
     event_handle();
-    physics_step();
-    render();
+
+    if (time_from(phys_log_clk) > 5) {
+      physics_step();
+      phys_log_clk.restart();
+    }
+
+    if (time_from(render_clk) > 6) {
+      render();
+      render_clk.restart();
+    }
+
   }
 }
 
