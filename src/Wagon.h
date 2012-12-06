@@ -9,6 +9,7 @@ typedef V3D<float> v3f;
 
 public:
 float wheel_powers[2];
+float color[3];
 
 public:
 Wagon(v3f pos) : Orientable(pos) {
@@ -17,6 +18,12 @@ Wagon(v3f pos) : Orientable(pos) {
 
   wheel_powers[0] = 0;
   wheel_powers[1] = 0;
+
+  auto rnd = [] () {return rand()/(float)RAND_MAX;};
+
+  color[0] = rnd();
+  color[1] = rnd();
+  color[2] = rnd();
 };
 
 void update() {

@@ -2,7 +2,10 @@
 
 RSim::RSim() : running(true) {}
 
-int RSim::init() {    
+int RSim::init() {
+  // seed random
+  srand(time(NULL));
+
   //// initialize window
   sf::VideoMode desktop_mode = sf::VideoMode::getDesktopMode();
   sf::ContextSettings OGLContext(
@@ -13,10 +16,12 @@ int RSim::init() {
     0); // minor
   window = new sf::Window(desktop_mode, "SFML Window", sf::Style::Fullscreen, OGLContext);
 
+  // setup wagon + soul
   Wagon* wagon = new Wagon(v3f(0,0,0));
   auto pqs = new PathQueueSoul(wagon);
   souls.push_back(pqs);
 
+  // create & load targets
   targets.push_back(new Orientable(v3f(10, -30, 0)));
   targets.push_back(new Orientable(v3f(0, 50, 0)));
   targets.push_back(new Orientable(v3f(40, 3, 0)));
@@ -25,6 +30,10 @@ int RSim::init() {
 
   for ( auto tg : targets ) {
     pqs->add_target(tg->pos);
+  }
+
+  for (int i = 0; i < 6; i++) {
+    territories.push_back(new Territory(v3f(0,0,0), i * M_PI / 3, (i + 1) * M_PI / 3));
   }
 
   loop();

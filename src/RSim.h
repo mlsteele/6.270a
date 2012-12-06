@@ -11,6 +11,7 @@ using std::vector;
 
 #include "Wagon.h"
 #include "Soul.h"
+#include "Territory.h"
 #include "PathQueueSoul.h"
 #include "Oggler.h"
 
@@ -28,6 +29,7 @@ Oggler cam;
 
 std::vector< Soul* > souls;
 std::vector< Orientable* > targets;
+std::vector< Territory* > territories;
 
 public:
 

@@ -5,11 +5,11 @@ void RSim::render() {
 
   // auto GLUQ = gluNewQuadric();
 
-  // render souls
+  // render by souls
   for (auto soul : souls) {
     glPushMatrix();
       glTranslatef(soul->wagon->pos.x, soul->wagon->pos.y, soul->wagon->pos.z);
-      glColor3f(1,1,1);
+      glColor3f(soul->wagon->color[0], soul->wagon->color[1], soul->wagon->color[2]);
       glutSolidSphere(2, 16, 16);
     glPopMatrix();
   }
@@ -22,6 +22,9 @@ void RSim::render() {
       glutSolidSphere(1, 16, 16);
     glPopMatrix();
   }
+
+  // render territories
+  for (auto tr : territories) tr->render();
 
 
   window->display();
