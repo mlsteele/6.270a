@@ -27,13 +27,15 @@ int RSim::init() {
   targets.push_back(new Orientable(v3f(40, 3, 0)));
   targets.push_back(new Orientable(v3f(50, 2, 0)));
   targets.push_back(new Orientable(v3f(-30, 20, 0)));
+  targets.push_back(new Orientable(v3f(-10, -60, 0)));
 
   for ( auto tg : targets ) {
     pqs->add_target(tg->pos);
   }
 
   for (int i = 0; i < 6; i++) {
-    territories.push_back(new Territory(v3f(0,0,0), i * M_PI / 3, (i + 1) * M_PI / 3));
+    auto angbuf = 0.1;
+    territories.push_back(new Territory(v3f(0,0,0), i * M_PI / 3 - angbuf, (i + 1) * M_PI / 3 + angbuf));
   }
 
   loop();

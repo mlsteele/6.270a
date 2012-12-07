@@ -45,32 +45,38 @@ void render() {
   // render slice
   // void gluPartialDisk(quad, inner, outer, slices, loops, start, sweep)
   glColor3f(.8, .8, .8);
-  gluPartialDisk(quad, rad_in, rad_out, 64 * (theta_1 - theta_0) / 2 / M_PI, 3, theta_0 / M_PI * 180, (theta_1 - theta_0) / M_PI * 180);
+  glPushMatrix();
+    glRotatef(180, 1, 1, 0);
+    gluPartialDisk(quad, rad_in, rad_out, 64 * (theta_1 - theta_0) / 2 / M_PI, 3, theta_0 / M_PI * 180, (theta_1 - theta_0) / M_PI * 180);
+  glPopMatrix();
 
   // owner indicator
-  glTranslatef(0,0,1);
   glColor3f(1, 1, 1);
   if (owner != NULL) glColor3f(owner->color[0], owner->color[1], owner->color[2]);
-  gluPartialDisk(quad,
-    (rad_out - rad_in) / 3 + rad_in,
-    (rad_out - rad_in) * 2 / 3 + rad_in,
-    64 * (theta_1 - theta_0) / 2 / M_PI, 3,
-    (theta_0 + (theta_1 - theta_0) / 3.) / M_PI * 180,
-    ((theta_1 - theta_0) / 3.) / M_PI * 180 );
+  glPushMatrix();
+    glTranslatef(0,0,1);
+    glRotatef(180, 1, 1, 0);
+    gluPartialDisk(quad,
+      (rad_out - rad_in) / 3 + rad_in,
+      (rad_out - rad_in) * 2 / 3 + rad_in,
+      64 * (theta_1 - theta_0) / 2 / M_PI, 3,
+      (theta_0 + (theta_1 - theta_0) / 3.) / M_PI * 180,
+      ((theta_1 - theta_0) / 3.) / M_PI * 180 );
+  glPopMatrix();
 
   // capture point
+  glColor3f(0.9, 0.4, 0.4);
   glPushMatrix();
-    glRotatef(90 - theta_cap / M_PI * 180, 0, 0, 1);
+    glRotatef(theta_cap / M_PI * 180, 0, 0, 1);
     glTranslatef(rad_cap, 0, 0);
-    glColor3f(0.9, 0.4, 0.4);
     glutSolidSphere(1, 16, 16);
   glPopMatrix();
 
   // dispenser
+  glColor3f(0.4, 0.4, 0.9);
   glPushMatrix();
-    glRotatef(90 - theta_disp / M_PI * 180, 0, 0, 1);
+    glRotatef(theta_disp / M_PI * 180, 0, 0, 1);
     glTranslatef(rad_disp, 0, 0);
-    glColor3f(0.4, 0.4, 0.9);
     glutSolidSphere(1, 16, 16);
   glPopMatrix();
 
@@ -82,8 +88,18 @@ void render() {
 int contains_wagon(Wagon& w) {
   auto ang2d = [] (v3f v) { return atan2(v.y, v.x); };
   auto dr = (w.pos - pos).len();
-  auto an = ang2d(w.pos - pos);
-  return an < theta_0 && an > theta_1 && (rad_in < dr) && (dr < rad_out);
+  auto an = fmod(ang2d(w.pos - pos) + 2 * M_PI, 2 * M_PI);
+  auto s_theta_0 = fmod(theta_0, 2 * M_PI);
+  auto s_theta_1 = fmod(theta_1, 2 * M_PI);
+
+  glPushMatrix();
+    glRotatef(an / M_PI * 180, 0, 0, 1);
+    glTranslatef(15, 0, 0);
+    glColor3f(0, 1, 0);
+    glutSolidSphere(3, 16, 16);
+  glPopMatrix();
+
+  return (s_theta_0 < an) && (an < s_theta_1) && (rad_in < dr) && (dr < rad_out);
 }
 
 };
