@@ -92,13 +92,6 @@ int contains_wagon(Wagon& w) {
   auto s_theta_0 = fmod(theta_0, 2 * M_PI);
   auto s_theta_1 = fmod(theta_1, 2 * M_PI);
 
-  glPushMatrix();
-    glRotatef(an / M_PI * 180, 0, 0, 1);
-    glTranslatef(15, 0, 0);
-    glColor3f(0, 1, 0);
-    glutSolidSphere(3, 16, 16);
-  glPopMatrix();
-
   return (s_theta_0 < an) && (an < s_theta_1) && (rad_in < dr) && (dr < rad_out);
 }
 
