@@ -17,7 +17,7 @@ int RSim::init() {
   window = new sf::Window(desktop_mode, "SFML Window", sf::Style::Fullscreen, OGLContext);
 
   // setup wagon + soul
-  Wagon* wagon = new Wagon(v3f(0,0,0));
+  Wagon* wagon = new Wagon(v3f(0,0,0), *this);
   auto pqs = new PathQueueSoul(wagon);
   souls.push_back(pqs);
 

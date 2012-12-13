@@ -95,6 +95,11 @@ int contains_wagon(Wagon& w) {
   return (s_theta_0 < an) && (an < s_theta_1) && (rad_in < dr) && (dr < rad_out);
 }
 
+int can_cap_wagon(Wagon& w) {
+  v3f cap_pos = pos + v3f(cos(theta_cap), sin(theta_cap), 0) * rad_cap;
+  return (cap_pos - w.pos).len() < 5;
+}
+
 };
 
 #endif

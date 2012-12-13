@@ -7,10 +7,11 @@ void RSim::physics_step() {
 
     // check ownership
     for (auto tr : territories) {
-      if (tr->contains_wagon(*(soul->wagon)))
-        tr->owner = soul->wagon;
-      else
-        tr->owner = NULL;
+      // if (tr->contains_wagon(*(soul->wagon)))
+      // if (tr->can_cap_wagon(*(soul->wagon)))
+      //   tr->owner = soul->wagon;
+      // else
+      //   tr->owner = NULL;
     }
   }  
 }

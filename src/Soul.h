@@ -2,6 +2,7 @@
   #define _SOUL_H_
 
 #include "Wagon.h"
+#include "RSim.h"
 
 class Soul {
 public:

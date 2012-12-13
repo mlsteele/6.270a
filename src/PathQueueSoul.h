@@ -23,6 +23,8 @@ void add_target(v3f target) {
 }
 
 void update() {
+  capture_territories();
+
   if (active == false && !targets.empty()) {
     active_target.set(targets.front());
     targets.pop();
@@ -47,6 +49,14 @@ void update() {
     wagon->wheel_powers[1] = 0;
   }
 };
+
+private:
+void capture_territories() {
+  wagon->env.territories;
+  // for (Territory* tr : (static_cast<RSim*>(wagon->env))->territories)
+  //   if (tr->can_cap_wagon(*wagon))
+  //     tr->owner = wagon;
+}
 
 };
 
