@@ -2,9 +2,6 @@
   #define _WAGON_H_
 
 #include "Orientable.h"
-#include "RSim.h"
-
-class RSim;
 
 class Wagon : public Orientable {
 private:
@@ -13,10 +10,9 @@ typedef V3D<float> v3f;
 public:
 float wheel_powers[2];
 float color[3];
-RSim& env;
 
 public:
-Wagon(v3f pos, RSim& env) : Orientable(pos), env(env) {
+Wagon(v3f pos) : Orientable(pos) {
   pitch(-M_PI/2);
   yaw(M_PI);
 

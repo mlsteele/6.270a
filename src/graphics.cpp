@@ -8,19 +8,19 @@ void RSim::render() {
   // render by souls
   for (auto soul : souls) {
     glPushMatrix();
-      glTranslatef(soul->wagon->pos.x, soul->wagon->pos.y, soul->wagon->pos.z);
-      glColor3f(soul->wagon->color[0], soul->wagon->color[1], soul->wagon->color[2]);
+      glTranslatef(soul->wagon.pos.x, soul->wagon.pos.y, soul->wagon.pos.z);
+      glColor3f(soul->wagon.color[0], soul->wagon.color[1], soul->wagon.color[2]);
       glutSolidSphere(2, 16, 16);
     glPopMatrix();
 
-    for (auto tr : territories) {
+    for (auto tr : env.territories) {
       tr->render();
-      tr->contains_wagon(*(soul->wagon));
+      tr->contains_wagon(soul->wagon);
     }
   }
 
   // render targets
-  for (auto target : targets) {
+  for (auto target : env.targets) {
     glPushMatrix();
       glTranslatef(target->pos.x, target->pos.y, target->pos.z);
       glColor3f(1, 0.76, 0);

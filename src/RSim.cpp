@@ -17,25 +17,25 @@ int RSim::init() {
   window = new sf::Window(desktop_mode, "SFML Window", sf::Style::Fullscreen, OGLContext);
 
   // setup wagon + soul
-  Wagon* wagon = new Wagon(v3f(0,0,0), *this);
-  auto pqs = new PathQueueSoul(wagon);
+  Wagon* wagon = new Wagon(v3f(0,0,0));
+  auto pqs = new PathQueueSoul(wagon, &env);
   souls.push_back(pqs);
 
   // create & load targets
-  targets.push_back(new Orientable(v3f(10, -30, 0)));
-  targets.push_back(new Orientable(v3f(0, 50, 0)));
-  targets.push_back(new Orientable(v3f(40, 3, 0)));
-  targets.push_back(new Orientable(v3f(50, 2, 0)));
-  targets.push_back(new Orientable(v3f(-30, 20, 0)));
-  targets.push_back(new Orientable(v3f(-10, -60, 0)));
+  env.targets.push_back(new Orientable(v3f(10, -30, 0)));
+  env.targets.push_back(new Orientable(v3f(0, 50, 0)));
+  env.targets.push_back(new Orientable(v3f(40, 3, 0)));
+  env.targets.push_back(new Orientable(v3f(50, 2, 0)));
+  env.targets.push_back(new Orientable(v3f(-30, 30, 0)));
+  env.targets.push_back(new Orientable(v3f(-10, -60, 0)));
 
-  for ( auto tg : targets ) {
+  for ( auto tg : env.targets ) {
     pqs->add_target(tg->pos);
   }
 
   for (int i = 0; i < 6; i++) {
     auto angbuf = 0.1;
-    territories.push_back(new Territory(v3f(0,0,0), i * M_PI / 3 - angbuf, (i + 1) * M_PI / 3 + angbuf));
+    env.territories.push_back(new Territory(v3f(0,0,0), i * M_PI / 3 - angbuf, (i + 1) * M_PI / 3 + angbuf));
   }
 
   loop();

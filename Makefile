@@ -1,4 +1,4 @@
-CC=/opt/local/bin/g++
+CC=clang++
 CFLAGS=-std=c++11 -Wall# -Wfatal-errors
 CREQS=-lsfml-system -lsfml-window -framework GLUT -framework OpenGL
 SRCROOT=src

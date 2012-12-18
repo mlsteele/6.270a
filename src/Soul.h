@@ -2,14 +2,14 @@
   #define _SOUL_H_
 
 #include "Wagon.h"
-#include "RSim.h"
+#include "Env.h"
 
 class Soul {
 public:
-Wagon* wagon;
+Wagon& wagon;
 
 public:
-Soul(Wagon* wagon) : wagon(wagon) {};
+Soul(Wagon& wagon) : wagon(wagon) {};
 
 virtual void update() = 0;
 };

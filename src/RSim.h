@@ -9,9 +9,8 @@ using std::vector;
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-#include "Wagon.h"
+#include "Env.h"
 #include "Soul.h"
-#include "Territory.h"
 #include "PathQueueSoul.h"
 #include "Oggler.h"
 
@@ -19,7 +18,6 @@ using std::vector;
 class RSim {
 
 private:
-
 typedef V3D<float> v3f;
 
 int running;
@@ -28,11 +26,11 @@ sf::Clock clk;
 Oggler cam;
 
 std::vector< Soul* > souls;
-std::vector< Orientable* > targets;
-std::vector< Territory* > territories;
+
+Env env;
+
 
 public:
-
 RSim();
 int init();
 void loop();
