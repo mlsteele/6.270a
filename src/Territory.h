@@ -37,6 +37,10 @@ Territory(v3f _pos, float _theta_0, float _theta_1) : Orientable(_pos) {
   rad_disp = rad_out * 0.9;
 };
 
+void capture(Wagon& wagon) {
+  owner = &wagon;
+}
+
 void render() {
   auto quad = gluNewQuadric();
   glPushMatrix();
@@ -96,8 +100,11 @@ int contains_wagon(Wagon& w) {
 }
 
 int can_cap_wagon(Wagon& w) {
-  v3f cap_pos = pos + v3f(cos(theta_cap), sin(theta_cap), 0) * rad_cap;
-  return (cap_pos - w.pos).len() < 6;
+  return (cap_pos() - w.pos).len() < 6;
+}
+
+v3f cap_pos() {
+  return pos + v3f(cos(theta_cap), sin(theta_cap), 0) * rad_cap;
 }
 
 };

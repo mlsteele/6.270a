@@ -22,12 +22,12 @@ int RSim::init() {
   souls.push_back(pqs);
 
   // create & load targets
-  env.targets.push_back(new Orientable(v3f(10, -30, 0)));
+  // env.targets.push_back(new Orientable(v3f(10, -30, 0)));
   env.targets.push_back(new Orientable(v3f(0, 50, 0)));
-  env.targets.push_back(new Orientable(v3f(40, 3, 0)));
-  env.targets.push_back(new Orientable(v3f(50, 2, 0)));
-  env.targets.push_back(new Orientable(v3f(-30, 30, 0)));
-  env.targets.push_back(new Orientable(v3f(-10, -60, 0)));
+  // env.targets.push_back(new Orientable(v3f(40, 3, 0)));
+  // env.targets.push_back(new Orientable(v3f(50, 2, 0)));
+  // env.targets.push_back(new Orientable(v3f(-30, 30, 0)));
+  // env.targets.push_back(new Orientable(v3f(-10, -60, 0)));
 
   for ( auto tg : env.targets ) {
     pqs->add_target(tg->pos);

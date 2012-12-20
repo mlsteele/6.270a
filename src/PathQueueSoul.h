@@ -1,17 +1,17 @@
 #ifndef _PATHQUEUESOUL_H_
   #define _PATHQUEUESOUL_H_
 
-#include <queue>
+#include <list>
 #include <algorithm>
 using std::max;
-using std::queue;
+using std::list;
 
 #include "Soul.h"
 
 class PathQueueSoul : public Soul {
 private:
 typedef V3D<float> v3f;
-std::queue<v3f> targets;
+std::list<v3f> targets;
 v3f active_target;
 int active = true;
 Env* env;
@@ -20,15 +20,27 @@ public:
 PathQueueSoul(Wagon* wagon, Env* env) : Soul(*wagon), env(env) {};
 
 void add_target(v3f target) {
-  targets.push(target);
+  targets.push_back(target);
+}
+
+void remove_target(v3f target) {
+  targets.remove(target);
+}
+
+bool has_target(v3f target) {
+  for (auto el : targets)
+    if (target == el)
+      return true;
+  return false;
 }
 
 void update() {
   capture_territories();
+  hunt_territories();
 
   if (active == false && !targets.empty()) {
     active_target.set(targets.front());
-    targets.pop();
+    targets.pop_front();
     active = true;
   }
 
@@ -53,10 +65,18 @@ void update() {
 
 private:
 void capture_territories() {
-  // env->territories;
-  // for (Territory* tr : (static_cast<RSim*>(wagon.env))->territories)
-  //   if (tr->can_cap_wagon(*wagon))
-  //     tr->owner = wagon;
+  for (Territory* tr : env->territories)
+    if (tr->can_cap_wagon(wagon))
+      tr->capture(wagon);
+}
+
+void hunt_territories() {
+  for (Territory* tr : env->territories) {
+    if (tr->owner != &wagon && !has_target(tr->cap_pos()))
+      add_target(tr->cap_pos());
+    if (tr->owner == &wagon && has_target(tr->cap_pos()))
+      remove_target(tr->cap_pos());
+  }
 }
 
 };
