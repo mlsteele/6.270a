@@ -93,7 +93,7 @@ void find_closest_objective() {
   target_active = true;
 };
 
-v3f& closest_pos(list<v3f>& ps) {
+v3f closest_pos(list<v3f>& ps) {
   v3f closest = ps.front();
   for (auto p : ps) {
     if ((p - wagon.pos).len() < (closest - wagon.pos).len())
