@@ -1,0 +1,5 @@
+6.270 simulator widget
+
+Currently builds with clang++
+Requires c++11
+Requires SFML 2.0 http://www.sfml-dev.org/
