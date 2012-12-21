@@ -7,7 +7,7 @@
 class Env {
 
 public:
-std::vector< Orientable* > targets;
+// std::vector< Orientable* > targets;
 std::vector< Territory* > territories;
 std::vector< Wagon* > wagons;
 };

@@ -10,6 +10,8 @@ typedef V3D<float> v3f;
 public:
 float wheel_powers[2];
 float color[3];
+int n_balls = 0;
+int max_balls = 10;
 
 public:
 Wagon(v3f pos) : Orientable(pos) {

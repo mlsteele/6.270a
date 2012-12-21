@@ -99,12 +99,29 @@ int contains_wagon(Wagon& w) {
   return (s_theta_0 < an) && (an < s_theta_1) && (rad_in < dr) && (dr < rad_out);
 }
 
-int can_cap_wagon(Wagon& w) {
+int at_cap_post(Wagon& w) {
   return (cap_pos() - w.pos).len() < 6;
+}
+
+int at_disp_post(Wagon& w) {
+  return (disp_pos() - w.pos).len() < 6;
 }
 
 v3f cap_pos() {
   return pos + v3f(cos(theta_cap), sin(theta_cap), 0) * rad_cap;
+}
+
+v3f disp_pos() {
+  return pos + v3f(cos(theta_disp), sin(theta_disp), 0) * rad_disp;
+}
+
+bool is_empty() {
+  return false;
+}
+
+void ask_for_ball(Wagon& w) {
+  if (!is_empty())
+    w.n_balls += 1;
 }
 
 };

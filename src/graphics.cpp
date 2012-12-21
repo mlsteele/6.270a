@@ -19,14 +19,14 @@ void RSim::render() {
     }
   }
 
-  // render targets
-  for (auto target : env.targets) {
-    glPushMatrix();
-      glTranslatef(target->pos.x, target->pos.y, target->pos.z);
-      glColor3f(1, 0.76, 0);
-      glutSolidSphere(1, 16, 16);
-    glPopMatrix();
-  }
+  // // render targets
+  // for (auto target : env.targets) {
+  //   glPushMatrix();
+  //     glTranslatef(target->pos.x, target->pos.y, target->pos.z);
+  //     glColor3f(1, 0.76, 0);
+  //     glutSolidSphere(1, 16, 16);
+  //   glPopMatrix();
+  // }
 
   // clock ang track
   // auto time_from = [] (sf::Clock& clk) {return clk.getElapsedTime().asMilliseconds();};

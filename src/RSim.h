@@ -11,7 +11,7 @@ using std::vector;
 
 #include "Env.h"
 #include "Soul.h"
-#include "PathQueueSoul.h"
+#include "IntuitSoul.h"
 #include "Oggler.h"
 
 
